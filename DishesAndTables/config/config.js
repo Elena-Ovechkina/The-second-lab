@@ -17,7 +17,7 @@ const config = {
     app: {
       name: 'dishesandtables'
     },
-    port: process.env.PORT || 3000,
+    port: process.env.PORT || 3001,
     db: 'mongodb://localhost/dishesandtables-test'
   },
 
