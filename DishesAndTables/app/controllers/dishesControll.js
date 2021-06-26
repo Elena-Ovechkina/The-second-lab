@@ -77,7 +77,7 @@ router.delete('/:id', function (req, res, next) {
     const dishesId = req.params.id;
 
     //  Удаляем блюдо
-    return DishesModel.deleteOne({ _id: dishesId }, function (err, res) {
+    return DishesModel.deleteOne({ _id: dishesId }, function (err, result) {
         if (err) {
             console.log(err);
             return res.status(500).send(err);
@@ -109,7 +109,7 @@ router.put('/', async function (req, res, next) {
 
     } catch (error) {
         //  если возникли ошибки, мы пытаемся об этом сообщить тут
-        console.log(err);
+        console.log(error);
         return res.status(500).send(error);
     }
 });
@@ -141,7 +141,7 @@ router.patch('/:id', function (req, res, next) {
     })
         .then(function (dishes) {
             //  4.  Если блюда, сообщаем об этом
-            if (!dishes) {
+            if (!dishes) {                                     //в dishes попадёт в документ с обнолёнными полями
                 return res.status(404).send({
                     message: 'Блюда с идентификатором ' + id + ' в БД нет'
                 });
