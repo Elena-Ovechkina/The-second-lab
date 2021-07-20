@@ -33,7 +33,7 @@ router.get('/', async function (req, res, next) {
 });
 
 //  Promise 
-router.get('/experimental/promise/release', async function (req, res, next) {
+router.get('/experimental/promise/release', function (req, res, next) {
     let actions = [
         TablesModel.find({}),
         TablesModel.count({})
@@ -217,7 +217,7 @@ router.patch('/:id', function (req, res, next) {
         })
 });
 
-//async/await !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+//async/await
 router.patch('/experimental/promise/release/:id', async function (req, res, next) {
     try {
         const id = req.params.id;

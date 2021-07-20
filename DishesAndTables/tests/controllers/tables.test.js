@@ -92,7 +92,7 @@ describe('Тесты обработчков запросов', function () {
                 quantity: 7,
                 availability: true,
                 tags: ['столик5'],
-                cost: 99
+                cost: 99,
             }
 
             let res = await chai.request(server)
@@ -104,6 +104,26 @@ describe('Тесты обработчков запросов', function () {
 
             expect(res.body._id).to.be.eql(table._id);
             expect(lodash.isEqual(res.body, table)).is.false;
+        });
+
+        it('PATCH /:id', async function () {
+            let table = await TableModel.findOne();
+            table = table.toJSON();
+            table._id = table._id.toString();
+
+            let template = {
+                availability: true,
+            }
+
+            let res = await chai.request(server)
+                .patch('/table/' + table._id)
+                .send(template);
+
+            expect(res).has.status(200);
+            expect(res).to.be.json;
+
+            expect(res.body._id).to.be.eql(table._id);
+            expect(lodash.isEqual(res.body.availability, template.availability)).is.true;
         });
 
         it('DELETE /:id', async function () {
