@@ -10,6 +10,24 @@ const lodash = require('lodash');
 
 describe('Тесты обработчиков запроса', function() {
     describe('order', function() {
+
+        //  Выполнить подготовку перед ВСЕМИ тестами внутри describe
+        before(async function () {
+            await DishesModel.deleteMany({})
+        });
+
+        //  Выполнить подготовку перед КАЖДЫМ тестом внутри describe
+        beforeEach(async function () {
+        });
+
+        //  Выполнить подготовку после ВСЕХ тестов внутри describe
+        after(async function () {
+        });
+
+        //  Выполнить подготовку после КАЖДОГО теста внутри describe
+        afterEach(async function () {
+        });
+
         it('PUT', async function() {
             let template = {
                 idTable: '233',
